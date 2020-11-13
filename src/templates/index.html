@@ -9,6 +9,64 @@
     <title>Orinico</title>
   </head>
   <body>
-    <h1>Orinico</h1>
+    <div class="header">
+      <nav class="top-bar">
+        <div class="wrapper">
+          <ul>
+            <li>
+              <a href="">Home</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Mon compte</a>
+            </li>
+            <li>
+              <a href="" @click.prevent="changeTheme">Theme</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrapper">
+        <div class="header__bottom bordered">
+            <div class="logo">
+              <img alt="ORINICO logo" src="images/content/logo.png">
+            </div>
+        </div>
+        <nav class="main-nav bordered">
+          <div class="wrapper">
+            <ul>
+              <li>
+                <a href="./teddy.html" title="Ours en peluche" class="current">
+                  Peluche
+                </a>
+              </li>
+              <li>
+                <a href="./camera.html" title="Caméras vintage">
+                  Caméras
+                </a>
+              </li>
+              <li>
+                <a href="./furniture.html" title="Meubles en chêne">
+                  Meubles
+                </a>
+              </li>
+              <li class="cart-ico">
+                <a href="./cart.html">
+                  <i class="mdi mdi-cart"></i>
+                </a>
+                <span>112 €</span>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <main class="main">
+      <div class="wrapper bordered">
+        <router-view/>
+      </div>
+    </main>
   </body>
 </html>
