@@ -17,6 +17,17 @@ body {
   margin: auto;
 }
 
+a{
+  display: block;
+  text-align: center;
+  color: #333;
+  transition: $transition-base;
+
+  &:hover{
+    color: $secondary;
+  }
+}
+
 .bordered{
   border: 1px solid $gray-dark;
 }
@@ -61,24 +72,15 @@ body {
       padding: 15px 20px;
       font-weight: lighter;
 
+      &.current, &.router-link-active{
+        color: $secondary;
+        font-weight: bold;
+      }
+
       @include media("<=360px"){
         padding: 10px;
         font-size: rem(14);
       }
-    }
-  }
-
-  a{
-    display: block;
-    text-align: center;
-    color: #333;
-
-    &:hover{
-      color: $gray-light !important;
-    }
-    &.current, &.router-link-active{
-      color: $secondary !important;
-      font-weight: bold;
     }
   }
 
@@ -156,6 +158,13 @@ body {
     display: flex;
     flex-direction: column;
 
+    &:hover{
+
+      img{
+        scale: 1.1
+      }
+    }
+
     &:last-child{
       // margin-right: 0;
       // margin-bottom: 10px;
@@ -174,6 +183,7 @@ body {
         height: 200px;
         object-fit: cover;
         object-position: center;
+        transition: $transition-base;
       }
     }
 
@@ -204,6 +214,7 @@ body {
 
         &:hover{
           color: #fff !important;
+          background-color: $primary;
         }
 
         &:first-child{
@@ -213,4 +224,42 @@ body {
       }
     }
   }
+}
+
+// footer
+
+.footer{
+
+  .wrapper{
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+
+    @include media("<=480px"){
+      display: block;
+      padding: 10px 50px;
+    }
   }
+
+  &__nav{
+
+    ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    li{
+      margin-right: 20px;
+      font-size: rem(14);
+    }
+
+    @include media("<=480px"){
+      margin-bottom: 10px;
+    }
+  }
+}
