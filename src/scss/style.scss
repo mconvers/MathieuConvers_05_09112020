@@ -50,9 +50,12 @@ body {
   padding: 0 15px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 4px;
   cursor: pointer;
   transition: $transition-base;
+  text-transform: uppercase;
+  font-size: rem(16);
 
   &[elevation]{
     border: none;
@@ -68,6 +71,11 @@ body {
   &[color~="primary"]{
     background: $primary;
     color: #fff;
+  }
+
+  &[big]{
+    min-height: 50px;
+    font-size: rem(18);
   }
 }
 
