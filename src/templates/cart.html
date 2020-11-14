@@ -76,10 +76,10 @@
             </div>
             <div class="cart__items__row item" v-for="(item, i) in shoppingList" :key="i">
               <div class="item__action">
-                <span class="mdi mdi-close"></span>
+                <button class="mdi mdi-close"></button>
               </div>
               <div class="item__image">
-                <img :src="item.imageUrl" alt="" width="30px">
+                <img src="images/content/teddy_1.jpg" alt="" width="30px">
               </div>
               <div class="item__name">
                 <span class="item__title">Produit</span>
@@ -87,7 +87,7 @@
               </div>
               <div class="item__price">
                 <span class="item__title">Prix</span>
-                112 €
+                112,00 €
               </div>
               <div class="item__calc">
                 <span class="item__title">Quantité</span>
@@ -112,10 +112,10 @@
           <div class="cart__total bordered">
             <p class="cart__total__title">Total panier</p>
             <div class="cart__total__price">
-              112 €
+              112,00 €
             </div>
           </div>
-          <button class="btn cart__items__btn" color="primary" elevation big>
+          <button class="btn cart__items__btn" color="primary" elevation big  onclick="window.location.href='/confirm.html'">
             Passer la commande
           </button>
         </div>

@@ -21,8 +21,8 @@ body {
   bottom: 10px;
   right: 10px;
   background-color: #fff;
-  border: 1px solid #48aa4c;
-  color: #48aa4c;
+  border: 1px solid $green;
+  color: $green;
   display: flex;
   height: 50px;
   align-items: center;
@@ -474,6 +474,16 @@ a{
 
     .item{
 
+      &__action{
+
+        button{
+          border: none;
+          background: $gray;
+          height: 30px;
+          cursor: pointer;
+        }
+      }
+
       &__title{
         display: none;
 
@@ -513,6 +523,93 @@ a{
       padding: 10px 20px;
       font-size: rem(25);
       text-align: right;
+    }
+  }
+}
+
+// confirm
+
+.confirm{
+  text-align: center;
+
+  .wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__logo{
+    border: 4px solid $gray-dark;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: rem(40);
+    color: $green;
+    margin: 0 auto 20px;
+  }
+
+  &__title{
+    font-size: rem(40);
+    font-weight: lighter;
+  }
+
+  &__subtitle{
+    font-weight: lighter;
+    color: $gray-darkforce;
+    margin-bottom: 20px;
+
+    &::first-child{
+      text-transform: uppercase;
+    }
+  }
+
+  &__summary{
+    margin-bottom: 20px;
+    border: 1px solid $gray-dark;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+
+    p{
+      opacity: 0.5;
+    }
+  }
+
+  &__command-nbr{
+    padding: 0 20px 0 0;
+    border-right: 1px solid $gray-dark;
+  }
+
+  &__command-price{
+    padding: 0 0 0 20px;
+  }
+
+  .command-label{
+    font-size: rem(14);
+  }
+
+  .command-sublabel{
+    margin-top: 10px;
+    font-size: rem(18);
+  }
+
+  footer{
+
+    .btn{
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+
+    p{
+      font-size: rem(14);
+      opacity: 0.5;
+
+      a{
+        display: inline;
+      }
     }
   }
 }

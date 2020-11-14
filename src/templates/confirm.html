@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+    <title>Orinico</title>
+  </head>
+  <body>
+    <div class="header">
+      <nav class="top-bar">
+        <div class="wrapper">
+          <ul>
+            <li>
+              <a href="">Home</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Mon compte</a>
+            </li>
+            <li>
+              <a href="" @click.prevent="changeTheme">Theme</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrapper">
+        <div class="header__bottom bordered">
+            <div class="logo">
+              <img alt="ORINICO logo" src="images/content/logo.png">
+            </div>
+        </div>
+        <nav class="main-nav bordered">
+          <div class="wrapper">
+            <ul>
+              <li>
+                <a href="teddy.html" title="Ours en peluche" class="current">
+                  Peluche
+                </a>
+              </li>
+              <li>
+                <a href="camera.html" title="Caméras vintage">
+                  Caméras
+                </a>
+              </li>
+              <li>
+                <a href="furniture.html" title="Meubles en chêne">
+                  Meubles
+                </a>
+              </li>
+              <li class="cart-ico">
+                <a href="cart.html">
+                  <i class="mdi mdi-cart"></i>
+                </a>
+                <span>112 €</span>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <main class="main">
+      <article class="confirm">
+        <div class="wrapper bordered">
+          <header>
+            <div class="confirm__logo">
+              <i class="mdi mdi-check"></i>
+            </div>
+            <p class="confirm__title">
+              Merci, <br>
+            </p>
+            <p class="confirm__subtitle">
+              à bientôt !
+            </p>
+          </header>
+          <div class="confirm__summary">
+            <div class="confirm__command-nbr">
+              <p class="command-label">
+                Numéro de votre commande
+              </p>
+              <p class="command-sublabel">
+                681351681561YTY
+              </p>
+            </div>
+            <div class="confirm__command-price">
+              <p class="command-label">
+                Total de votre commande
+              </p>
+              <p class="command-sublabel">
+                <span>112,00</span> €
+              </p>
+            </div>
+          </div>
+          <footer>
+            <a href="" class="btn" color="primary" elevation big>
+              OK
+            </a>
+            <p>
+              Un e-mail de confirmation a été encoyé à adress@mail.com <br>
+              Des questions ? Contactez-nous au <a href="tel:01-XX-XX-XX-XX">01-XX-XX-XX-XX</a>
+            </p>
+          </footer>
+        </div>
+      </article>
+    </main>
+    <div class="footer">
+      <div class="wrapper bordered">
+        <nav class="footer__nav">
+          <ul>
+            <li>
+              <a href="">CGU</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Mon compte</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright">
+          @ 2020 — <strong>ORINICO</strong>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
