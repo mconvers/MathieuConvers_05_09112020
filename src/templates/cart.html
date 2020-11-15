@@ -74,7 +74,75 @@
               <div>Quantity</div>
               <div>Total</div>
             </div>
-            <div class="cart__items__row item" v-for="(item, i) in shoppingList" :key="i">
+            <div class="cart__items__row item">
+              <div class="item__action">
+                <button class="mdi mdi-close"></button>
+              </div>
+              <div class="item__image">
+                <img src="images/content/teddy_1.jpg" alt="" width="30px">
+              </div>
+              <div class="item__name">
+                <span class="item__title">Produit</span>
+                Teddy
+              </div>
+              <div class="item__price">
+                <span class="item__title">Prix</span>
+                112,00 €
+              </div>
+              <div class="item__calc">
+                <span class="item__title">Quantité</span>
+                <div class="quantity bordered">
+                  <button class="btn" disabled="this.itemQuantity <= 1">
+                    <span class="mdi mdi-minus"></span>
+                  </button>
+                  <div class="quantity__count bordered">
+                    1
+                  </div>
+                  <button class="btn">
+                    <span class="mdi mdi-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="item__total">
+                <span class="item__title">Total</span>
+                112 €
+              </div>
+            </div>
+            <div class="cart__items__row item">
+              <div class="item__action">
+                <button class="mdi mdi-close"></button>
+              </div>
+              <div class="item__image">
+                <img src="images/content/teddy_1.jpg" alt="" width="30px">
+              </div>
+              <div class="item__name">
+                <span class="item__title">Produit</span>
+                Teddy
+              </div>
+              <div class="item__price">
+                <span class="item__title">Prix</span>
+                112,00 €
+              </div>
+              <div class="item__calc">
+                <span class="item__title">Quantité</span>
+                <div class="quantity bordered">
+                  <button class="btn" disabled="this.itemQuantity <= 1">
+                    <span class="mdi mdi-minus"></span>
+                  </button>
+                  <div class="quantity__count bordered">
+                    1
+                  </div>
+                  <button class="btn">
+                    <span class="mdi mdi-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="item__total">
+                <span class="item__title">Total</span>
+                112 €
+              </div>
+            </div>
+            <div class="cart__items__row item">
               <div class="item__action">
                 <button class="mdi mdi-close"></button>
               </div>
@@ -115,9 +183,48 @@
               112,00 €
             </div>
           </div>
-          <button class="btn cart__items__btn" color="primary" elevation big  onclick="window.location.href='/confirm.html'">
-            Passer la commande
-          </button>
+          <div class="cart__form form">
+            <form action="">
+              <div class="form__input">
+                <label for="mail">Mail <span>*</span> </label>
+                <input value="mon texte input" type="mail" id="mail" required>
+              </div>
+              <div class="form__input">
+                <label for="lastname">Nom <span>*</span></label>
+                <input value="mon texte input" type="text" id="lastname" required>
+              </div>
+              <div class="form__input">
+                <label for="name">Prénom <span>*</span></label>
+                <input value="mon texte input" type="text" id="name" required>
+              </div>
+              <div class="form__input">
+                <label for="adress">Adresse <span>*</span></label>
+                <input value="mon texte input" type="text" id="adress" required>
+              </div>
+              <div class="form__input">
+                <label for="city">Ville <span>*</span></label>
+                <input value="mon texte input" type="text" id="city" required>
+              </div>
+              <div class="info">
+                <span>*</span> : Champs obligatoir
+              </div>
+              <button
+                type="submit"
+                class="btn cart__items__btn"
+                color="primary"
+                elevation
+                big
+                onclick="window.location.href='/confirm.html'">
+                Passer la commande
+              </button>
+            </form>
+          </div>
+          <div class="snackbar error">
+            Vous devez remplir tous les champs
+            <button class="snackbar__close">
+              <i class="mdi mdi-close"></i>
+            </button>
+          </div>
         </div>
       </article>
     </main>
