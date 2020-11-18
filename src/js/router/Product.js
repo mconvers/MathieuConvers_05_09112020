@@ -4,9 +4,12 @@ import { addToCart, updateQuantities } from '../utils';
 function product(routeParams) {
 
     const urlReq = `http://localhost:3000/api/teddies/${routeParams.query.id}`;
+
     fetch(urlReq)
-    .then(response => {
-      const item = JSON.parse(response);
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      const item = JSON.parse(data);
       // selection de l'élément HTML article
       const article = document.getElementsByTagName('article')[0];
       // mise en place de la class 'product' sur <article>
