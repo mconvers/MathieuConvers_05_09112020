@@ -2,9 +2,13 @@ import axios from '../axios';
 import { addToCart } from '../utils';
 
 function index() {
-  axios.get('/')
-    .then((response) => {
-      const items = response.data;
+
+  const urlReq = "http://localhost:3000/api/teddies/";
+
+  fetch(urlReq)
+  .then(response => response.json())
+  .then(data => {
+      const items = data;
       // selection de l'élément HTML article
       const article = document.getElementsByTagName('article')[0];
       // mise en place de la class 'list-articles' sur <article>
