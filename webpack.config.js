@@ -28,6 +28,8 @@ module.exports = {
   output: {
     filename: 'js/[name].js',
     path: environment.paths.output,
+    library: 'someLibName',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
