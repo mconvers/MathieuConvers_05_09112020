@@ -293,16 +293,24 @@ a{
     background: #fff;
     padding: 50px;
 
+    h1{
+      font-size: rem(35);
+      margin-bottom: 10px;
+    }
+
     @include media("<=768px"){
       padding: 20px 10px;
     }
   }
 }
 
-// list-articles
+// error Page
 
-.list-articles{
+.btn{
+  max-width: 250px;
 }
+
+// list-articles
 
 .list{
   display: grid;

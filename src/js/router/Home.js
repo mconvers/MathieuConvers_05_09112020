@@ -4,6 +4,8 @@ let snackBarTimeout = null;
 
 function index() {
   const urlReq = 'http://localhost:3000/api/teddies/';
+  // const urlReq = 'http://localhost:3000/api/cameras/';
+  // const urlReq = 'http://localhost:3000/api/furniture/';
 
   fetch(urlReq)
     .then((response) => response.json())
@@ -44,9 +46,12 @@ function index() {
         </div>
         `;
 
+        // on stock l'element addToCart et on écoute son event au click
         const linkAddToCart = divTemp.querySelector('a[data-action=addToCart]');
         linkAddToCart.addEventListener('click', (e) => {
           e.preventDefault();
+
+          // on ajoute au panier
           addToCart(item);
 
           // on affiche remplit et affiche la snackbar
@@ -65,9 +70,12 @@ function index() {
             snackbar.innerHTML = '';
           }, 3000);
         });
+        // on met le premier enfants de la div temporaire dans le container 'list'
         container.appendChild(divTemp.firstElementChild);
       });
+      // on place le container dans l'élément div.wrapper
       wrapper.appendChild(container);
+      // on place le wrapper dans l'élément HTML article
       article.appendChild(wrapper);
     })
     .catch(function (error) {

@@ -1,4 +1,3 @@
-import axios from '../axios';
 import { totalOrder } from '../utils';
 
 function confirm() {
@@ -61,6 +60,8 @@ function confirm() {
   totalOrder(order.products);
   // on vide le LocalStorage (vide le pannier)
   window.localStorage.clear();
+  // on reset le prix dans le lien du menu dans la page index.html
+  document.querySelector('.cart-ico__totalCart').textContent = '0€';
 }
 
 export default confirm;

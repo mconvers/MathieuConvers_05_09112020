@@ -2,6 +2,12 @@ import { addToCart, updateQuantities } from '../utils';
 
 function product(routeParams) {
   const urlReq = `http://localhost:3000/api/teddies/${routeParams.query.id}`;
+  // const urlReq = `http://localhost:3000/api/cameras/${routeParams.query.id}`;
+  // const urlReq = `http://localhost:3000/api/furniture/${routeParams.query.id}`;
+
+  const productOption = 'colors';
+  // const productOption = 'lenses';
+  // const productOption = 'varnish';
 
   fetch(urlReq)
     .then((response) => response.json())
@@ -31,7 +37,7 @@ function product(routeParams) {
             <label for="colors">Couleurs :</label>
             <div class="custom-select">
               <select name="colors" id="">
-                ${item.colors.map((color) => `<option value="${color}">${color}</option>`).join('')}
+                ${item[productOption].map((value) => `<option value="${value}">${value}</option>`).join('')}
               </select>
             </div>
           </div>
@@ -90,10 +96,11 @@ function product(routeParams) {
         updateQuantities('decrement', item, option);
       });
 
-      // on ajoute les éléments à l'élément article du DOM
+      // on ajoute les éléments dans l'élément div.wrapper
       while (divTemp.firstElementChild) {
         wrapper.appendChild(divTemp.firstElementChild);
       }
+      // on place le wrapper dans l'élément HTML article
       article.appendChild(wrapper);
     })
     .catch(function (error) {

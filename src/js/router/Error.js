@@ -10,7 +10,13 @@ function errorPage() {
 
   wrapper.innerHTML = `
     <h1>Page d'erreur</h1>
+    <p>Cette page n'existe pas ou n'est plus accessible</p>
+    </br>
+    <a href="" onclick="router.push({ name: 'index' }, ...arguments)" class="btn" color="primary" elevation>
+      Retourner à l'accueil
+    </a>
   `;
+  // on place le wrapper dans l'élément HTML article
   article.appendChild(wrapper);
 }
 

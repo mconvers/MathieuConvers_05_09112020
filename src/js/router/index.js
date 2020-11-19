@@ -43,8 +43,6 @@ class Router {
   }
 
   static push(route, e = null) {
-    console.log(route, e);
-    // console.log('route: ', route);
     const nextRoute = routes.find((r) => r.name === route.name);
     const routeURL = new URL(nextRoute.path, window.location);
     if (route.query) {

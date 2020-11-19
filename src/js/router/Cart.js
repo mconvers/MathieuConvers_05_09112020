@@ -159,14 +159,23 @@ function cart() {
     products: [],
   };
 
-  document.querySelector('cart__form');
+  // si pas de basket dans le localStorage on cache le form
+  const formDiv = document.querySelector('.cart__form');
+  if (!window.localStorage.getItem('basket')) {
+    formDiv.style.display = 'none';
+  }
 
   // on récupère tous les inputs
   const inputs = document.querySelectorAll('input');
 
-  // click to order
+  // click to submit form
   document.getElementById('submit').onclick = (e) => {
     e.preventDefault();
+
+    // si pas de basket dans le localStorage on ne continue pas le code
+    if (!window.localStorage.getItem('basket')) {
+      return;
+    }
 
     // validation des inputs
     const errors = [];
