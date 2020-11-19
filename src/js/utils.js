@@ -1,4 +1,4 @@
-function getItems() {
+export function getItems() {
   const items = [];
 
   if (window.localStorage.getItem('basket')) {

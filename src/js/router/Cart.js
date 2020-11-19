@@ -1,8 +1,10 @@
-import { updateQuantities, setTotalCart, deleteItem } from '../utils';
+import {
+  updateQuantities, setTotalCart, deleteItem, getItems,
+} from '../utils';
 
 function cart() {
   // on récupère les items du basket dans LocalStorage
-  const items = JSON.parse(window.localStorage.getItem('basket'));
+  const items = getItems();
 
   // selection de l'élément HTML article
   const article = document.getElementsByTagName('article')[0];
@@ -107,23 +109,23 @@ function cart() {
     <form action="">
       <div class="form__input">
         <label for="mail">Mail <span>*</span> </label>
-        <input value="mconvers@mail.com" type="text" id="mail" data-name="Mail" data-type="email">
+        <input type="text" id="mail" data-name="Mail" data-type="email">
       </div>
       <div class="form__input">
         <label for="lastname">Nom <span>*</span></label>
-        <input value="Convers" type="text" id="lastname" data-name="Nom" data-type="lastName">
+        <input type="text" id="lastname" data-name="Nom" data-type="lastName">
       </div>
       <div class="form__input">
         <label for="name">Prénom <span>*</span></label>
-        <input value="Mathieu" type="text" id="name" data-name="Prénom" data-type="firstName">
+        <input type="text" id="name" data-name="Prénom" data-type="firstName">
       </div>
       <div class="form__input">
         <label for="adress">Adresse <span>*</span></label>
-        <input value="3 rue des rues" type="text" id="adress" data-name="Adresse" data-type="address">
+        <input des rues" type="text" id="adress" data-name="Adresse" data-type="address">
       </div>
       <div class="form__input">
         <label for="city">Ville <span>*</span></label>
-        <input value="Maville" type="text" id="city" data-name="Ville" data-type="city">
+        <input type="text" id="city" data-name="Ville" data-type="city">
       </div>
       <div class="info">
         <span>*</span> : Champs obligatoir
