@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+    <title>Orinico</title>
+  <link rel="icon" href="favicon.ico"><link href="css/app.css" rel="stylesheet"></head>
+  <body>
+    <div class="header">
+      <nav class="top-bar">
+        <div class="wrapper">
+          <ul>
+            <li>
+              <a href="">Home</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Mon compte</a>
+            </li>
+            <li>
+              <a href="" @click.prevent="changeTheme">Theme</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrapper">
+        <div class="header__bottom bordered">
+            <div class="logo">
+              <img alt="ORINICO logo" src="images/content/logo.png">
+            </div>
+        </div>
+        <nav class="main-nav bordered">
+          <div class="wrapper">
+            <ul>
+              <li>
+                <a href="/" title="Ours en peluche" class="current">
+                  Peluche
+                </a>
+              </li>
+              <li>
+                <a href="/" title="Caméras vintage">
+                  Caméras
+                </a>
+              </li>
+              <li>
+                <a href="/" title="Meubles en chêne">
+                  Meubles
+                </a>
+              </li>
+              <li class="cart-ico">
+                <a href="" onClick="window.router.push({ name: 'cart' }, event)">
+                  <i class="mdi mdi-cart"></i>
+                </a>
+                <span class="cart-ico__totalCart"></span>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <main class="main">
+      <article class="list-articles">
+        <div class="wrapper bordered">
+          <!-- List d'items ajax-->
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle
+                class="path"
+                cx="50" cy="50" r="20"
+                fill="none"
+                stroke-width="4"
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
+      </article>
+      <div class="snackbar">
+        <div class="snackbar__content">
+          Snackbar content
+        </div>
+        <!-- <button class="snackbar__close">
+          <i class="mdi mdi-close"></i>
+        </button> -->
+      </div>
+    </main>
+    <div class="footer">
+      <div class="wrapper bordered">
+        <nav class="footer__nav">
+          <ul>
+            <li>
+              <a href="">CGU</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Mon compte</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright">
+          @ 2020 — <strong>ORINICO</strong>
+        </div>
+      </div>
+    </div>
+  <script src="js/app.js"></script></body>
+</html>
+
+<script>
+
+</script>

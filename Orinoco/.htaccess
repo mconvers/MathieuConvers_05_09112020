@@ -1,0 +1,4 @@
+<head><link rel="icon" href="favicon.ico"><link href="css/app.css" rel="stylesheet"></head>RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+<script src="js/app.js"></script>
