@@ -159,6 +159,8 @@ function cart() {
     products: [],
   };
 
+  document.querySelector('cart__form');
+
   // on récupère tous les inputs
   const inputs = document.querySelectorAll('input');
 
