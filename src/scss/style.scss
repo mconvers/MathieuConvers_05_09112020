@@ -32,6 +32,17 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+
+    &.error{
+
+      label{
+        color: $red;
+      }
+
+      input{
+        border-color: $red;
+      }
+    }
   }
 
   label{
@@ -54,6 +65,7 @@ body {
     font-size: rem(16);
     width: 100%;
     color: rgba(0, 0, 0, 0.6);
+    transition: $transition-base;
   }
 
   .btn{
@@ -83,9 +95,9 @@ body {
   border: 1px solid $gray;
   color: $gray;
   display: flex;
-  height: 50px;
+  min-height: 50px;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 20px;
   border-radius: 4px;
   opacity: 0;
   z-index: -5;
@@ -260,7 +272,7 @@ a{
         position: absolute;
         display: block;
         top: 1px;
-        right: 0;
+        right: -10px;
         font-size: rem(12)
       }
     }
@@ -378,6 +390,77 @@ a{
         }
       }
     }
+  }
+}
+
+.loader {
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
+  display: inline-block;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+
+  .circular {
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    stroke-linecap: round;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: $primary;
+  }
+  40% {
+    stroke: $secondary;
+  }
+  66% {
+    stroke: $primary;
+  }
+  80%,
+  90% {
+    stroke: $secondary;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
 }
 

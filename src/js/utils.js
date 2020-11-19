@@ -1,8 +1,14 @@
-export function addToCart(item) {
-  let items = [];
+function getItems() {
+  const items = [];
 
   if (window.localStorage.getItem('basket')) {
-    items = JSON.parse(window.localStorage.getItem('basket'));
+    return JSON.parse(window.localStorage.getItem('basket'));
+  }
+  return items;
+}
+export function addToCart(item) {
+  const items = getItems();
+  if (items.length) {
     const foundItem = items.find((i) => i._id === item._id);
     if (foundItem) {
       foundItem.quantity += item.quantity;
@@ -13,6 +19,7 @@ export function addToCart(item) {
     items.push(item);
   }
   window.localStorage.setItem('basket', JSON.stringify(items));
+  setTotalCart();
 }
 
 export function updateQuantities(action, item, options) {
@@ -20,10 +27,9 @@ export function updateQuantities(action, item, options) {
   switch (action) {
     case 'increment':
     case 'decrement':
-      console.log(options);
-      const quantityDiv = options.div;
-      const itemQuantity = quantityDiv.children[1];
-      const decrementBtn = quantityDiv.children[0];
+      const itemDiv = options.div;
+      const itemQuantity = itemDiv.querySelector('.quantity__count');
+      const decrementBtn = itemDiv.querySelector('button[data-action=decrement]');
       if (action === 'increment') {
         // si data action est increment on ajoute un item
         item.quantity += 1;
@@ -41,21 +47,31 @@ export function updateQuantities(action, item, options) {
       itemQuantity.textContent = item.quantity;
 
       if (options.module === 'Cart') {
-        console.log('part module');
         // re calcule de la ligne
         window.localStorage.setItem('basket', JSON.stringify(options.items));
-        const totalRow = document.querySelector('.total-row');
+        const totalRow = itemDiv.querySelector('.total-row');
         totalRow.textContent = `${(item.quantity * item.price / 100).toFixed(2)} €`;
+        setTotalCart();
       }
       break;
     default:
   }
-  totalCart(options.items);
 }
 
-export function totalCart(items) {
-  const totalDiv = document.getElementById('totalCart');
+export function setTotalCart() {
+  const items = getItems();
   const r = (items.reduce((acc, item) => acc + item.quantity * item.price, 0) / 100).toFixed(2);
+  const div = document.getElementById('totalCart');
+  if (div) {
+    div.textContent = `${r} €`;
+  }
+  const div2 = document.querySelector('.cart-ico__totalCart');
+  div2.textContent = `${r} €`;
+}
+
+export function totalOrder(items) {
+  const totalDiv = document.getElementById('totalCart');
+  const r = (items.reduce((acc, item) => acc + item.price, 0) / 100).toFixed(2);
   totalDiv.textContent = `${r} €`;
 }
 

@@ -1,13 +1,13 @@
-import axios from '../axios';
 import { addToCart } from '../utils';
 
-function index() {
+let snackBarTimeout = null;
 
-  const urlReq = "http://localhost:3000/api/teddies/";
+function index() {
+  const urlReq = 'http://localhost:3000/api/teddies/';
 
   fetch(urlReq)
-  .then(response => response.json())
-  .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       const items = data;
       // selection de l'élément HTML article
       const article = document.getElementsByTagName('article')[0];
@@ -56,8 +56,11 @@ function index() {
             L'article "${item.name}" à bien été ajouté à
             <a href="" onclick="router.push({ name: 'cart' }, ...arguments)" style="text-decoration: underline;">votre pannier</a>
           `;
+          if (snackBarTimeout) {
+            clearTimeout(snackBarTimeout);
+          }
           // après 3 sec on cache la snackbar et on la vide
-          setTimeout(function () {
+          snackBarTimeout = setTimeout(function () {
             snackbar.parentNode.classList.remove('success');
             snackbar.innerHTML = '';
           }, 3000);

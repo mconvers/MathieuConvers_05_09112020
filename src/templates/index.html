@@ -53,10 +53,10 @@
                 </a>
               </li>
               <li class="cart-ico">
-                <a href="cart.html">
+                <a href="" onClick="window.router.push({ name: 'cart' }, ...arguments)}">
                   <i class="mdi mdi-cart"></i>
                 </a>
-                <span class="cart-ico__totalCart">112 €</span>
+                <span class="cart-ico__totalCart"></span>
               </li>
             </ul>
           </div>
@@ -67,7 +67,16 @@
       <article class="list-articles">
         <div class="wrapper bordered">
           <!-- List d'items ajax-->
-          LOADER
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle
+                class="path"
+                cx="50" cy="50" r="20"
+                fill="none"
+                stroke-width="4"
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
         </div>
       </article>
       <div class="snackbar">
@@ -103,6 +112,5 @@
 </html>
 
 <script>
-
 
 </script>

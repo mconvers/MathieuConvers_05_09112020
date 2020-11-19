@@ -2,6 +2,7 @@ import cart from './Cart';
 import product from './Product';
 import index from './Home';
 import confirm from './Confirm';
+import error from './Error';
 
 export default [
   {
@@ -23,5 +24,10 @@ export default [
     path: '/confirm',
     name: 'confirm',
     load: confirm,
+  },
+  {
+    path: '/error',
+    name: 'error',
+    load: error,
   },
 ];

@@ -1,5 +1,4 @@
-import axios from '../axios';
-import { updateQuantities, totalCart, deleteItem } from '../utils';
+import { updateQuantities, setTotalCart, deleteItem } from '../utils';
 
 function cart() {
   // on récupère les items du basket dans LocalStorage
@@ -68,7 +67,7 @@ function cart() {
     // ### actions d'update de la quantité ###
     // on recupère l'élément div.quantity, le nom du module et la liste d'items du LocalStorage
     const options = {
-      div: divTemp.querySelector('div.quantity'),
+      div: divTemp.querySelector('div.cart__items__row'),
       module: 'Cart',
       items: items,
     };
@@ -108,23 +107,23 @@ function cart() {
     <form action="">
       <div class="form__input">
         <label for="mail">Mail <span>*</span> </label>
-        <input value="mon texte input" type="mail" id="mail" required>
+        <input value="mconvers@mail.com" type="text" id="mail" data-name="Mail" data-type="email">
       </div>
       <div class="form__input">
         <label for="lastname">Nom <span>*</span></label>
-        <input value="mon texte input" type="text" id="lastname" required>
+        <input value="Convers" type="text" id="lastname" data-name="Nom" data-type="lastName">
       </div>
       <div class="form__input">
         <label for="name">Prénom <span>*</span></label>
-        <input value="mon texte input" type="text" id="name" required>
+        <input value="Mathieu" type="text" id="name" data-name="Prénom" data-type="firstName">
       </div>
       <div class="form__input">
         <label for="adress">Adresse <span>*</span></label>
-        <input value="mon texte input" type="text" id="adress" required>
+        <input value="3 rue des rues" type="text" id="adress" data-name="Adresse" data-type="address">
       </div>
       <div class="form__input">
         <label for="city">Ville <span>*</span></label>
-        <input value="mon texte input" type="text" id="city" required>
+        <input value="Maville" type="text" id="city" data-name="Ville" data-type="city">
       </div>
       <div class="info">
         <span>*</span> : Champs obligatoir
@@ -150,26 +149,104 @@ function cart() {
   article.appendChild(wrapper);
 
   // Total du pannier
-  totalCart(items);
+  setTotalCart();
+
+  // on crée le json à envoyer
+  const formBody = {
+    contact: {},
+    products: [],
+  };
+
+  // on récupère tous les inputs
+  const inputs = document.querySelectorAll('input');
 
   // click to order
   document.getElementById('submit').onclick = (e) => {
     e.preventDefault();
-    console.log(e);
 
-    setTimeout(function () {
-      window.router.push({ name: 'confirm' });
-    }, 2000);
+    // validation des inputs
+    const errors = [];
+    for (let i = 0; i < inputs.length; i += 1) {
+      if (inputs[i].getAttribute('data-name') === 'Mail') {
+        // on vérifie si le mail est valide
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputs[i].value)) {
+          formBody.contact[inputs[i].dataset.type] = inputs[i].value;
+        } else if (inputs[i].value === '') {
+          errors.push("- L'email doit être saisi");
+        } else {
+          inputs[i].parentNode.classList.add('error');
+          errors.push("- L'email est invalide");
+        }
+      } else if (inputs[i].value === '') {
+        inputs[i].parentNode.classList.add('error');
+        errors.push(`- Le champ ${inputs[i].getAttribute('data-name')} doit être saisi`);
+      } else {
+        // on ajoute les infos de contact à l'object qui sera envoyé au serveur
+        formBody.contact[inputs[i].dataset.type] = inputs[i].value;
+      }
+    }
 
-    // on affiche remplit et affiche la snackbar
-    const snackbar = document.getElementsByClassName('snackbar__content')[0];
-    snackbar.parentNode.classList.add('error');
-    snackbar.innerHTML = 'Veuillez remplir tous les champs';
-    // après 5 sec on cache la snackbar et on la vide
-    setTimeout(function () {
-      snackbar.parentNode.classList.remove('error');
-      snackbar.innerHTML = '';
-    }, 5000);
+    const msgError = errors.join('<br>');
+
+    if (msgError) {
+      // on affiche remplit et affiche la snackbar
+      const snackbar = document.getElementsByClassName('snackbar__content')[0];
+      snackbar.parentNode.classList.add('error');
+      snackbar.innerHTML = `Les champs suivant sont éronés : </br></br>${msgError}`;
+      // après 5 sec on cache la snackbar et on la vide
+      setTimeout(function () {
+        snackbar.parentNode.classList.remove('error');
+        snackbar.innerHTML = '';
+      }, 5000);
+    } else {
+      // on ajoute les id des items à envoyer au serveur
+      items.forEach((item) => {
+        for (let i = 0; i < item.quantity; i += 1) {
+          formBody.products.push(item._id);
+        }
+      });
+      // on passe sous forme de string l'objet à envoyer
+      const body = JSON.stringify(formBody);
+
+      // on envoie la requete en POST au serveur
+      fetch('http://localhost:3000/api/teddies/order', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body,
+      }).then((res) => res.json())
+        .then((data) => {
+          // on passe la réponse dans le localStorage
+          window.localStorage.setItem('order', JSON.stringify(data));
+          // on affiche remplit et affiche la snackbar
+          const snackbar = document.getElementsByClassName('snackbar__content')[0];
+          snackbar.parentNode.classList.add('success');
+          snackbar.innerHTML = `
+            Votre demande est en cours de validation
+            <div class="loader" style="width:15px; margin-left: 10px;">
+              <svg class="circular" viewBox="25 25 50 50">
+                <circle
+                  class="path"
+                  cx="50" cy="50" r="20"
+                  fill="none"
+                  stroke-width="4"
+                  stroke-miterlimit="10"/>
+              </svg>
+            </div>
+          `;
+          // après 5 sec on cache la snackbar et on la vide puis on va à la page de confirmation
+          setTimeout(function () {
+            snackbar.parentNode.classList.remove('success');
+            snackbar.innerHTML = '';
+            window.router.push({ name: 'confirm' }, { preventDefault: () => {} });
+          }, 3000);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
 }
 

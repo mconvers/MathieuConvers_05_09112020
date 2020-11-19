@@ -1,15 +1,12 @@
-import axios from '../axios';
 import { addToCart, updateQuantities } from '../utils';
 
 function product(routeParams) {
+  const urlReq = `http://localhost:3000/api/teddies/${routeParams.query.id}`;
 
-    const urlReq = `http://localhost:3000/api/teddies/${routeParams.query.id}`;
-
-    fetch(urlReq)
-    .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      const item = JSON.parse(data);
+  fetch(urlReq)
+    .then((response) => response.json())
+    .then((data) => {
+      const item = data;
       // selection de l'élément HTML article
       const article = document.getElementsByTagName('article')[0];
       // mise en place de la class 'product' sur <article>
@@ -21,7 +18,7 @@ function product(routeParams) {
       const divTemp = document.createElement('div');
       // on initialise la qunatité à 1
       item.quantity = 1;
-    
+
       divTemp.innerHTML = `
         <div class="product__image">
           <img src="${item.imageUrl}" alt="Peluche ${item.name}">
@@ -56,7 +53,7 @@ function product(routeParams) {
           </div>
         </div>
     `;
-    
+
       // on recupère l'élément data-action = addToCart
       const linkAddToCart = divTemp.querySelector('button[data-action=addToCart]');
       // on écoute l'event au click sur l'élément
@@ -64,7 +61,7 @@ function product(routeParams) {
         e.preventDefault();
         // on ajoute au panier l'item (dans le localstorage)
         addToCart(item);
-    
+
         // on affiche remplit et affiche la snackbar
         const snackbar = document.getElementsByClassName('snackbar__content')[0];
         snackbar.parentNode.classList.add('success');
@@ -78,11 +75,10 @@ function product(routeParams) {
           snackbar.innerHTML = '';
         }, 5000);
       });
-    
+
       // ### actions d'update de la quantité ###
       // on recupère l'élément div.quantity
       const option = { div: divTemp.querySelector('div.quantity') };
-      console.log(option);
       // on recupère les bouton + et -
       const linkIncrement = divTemp.querySelector('button[data-action=increment]');
       const linkDecrement = divTemp.querySelector('button[data-action=decrement]');
@@ -93,14 +89,16 @@ function product(routeParams) {
       linkDecrement.addEventListener('click', () => {
         updateQuantities('decrement', item, option);
       });
-    
+
       // on ajoute les éléments à l'élément article du DOM
-      while (divTemp.firstChild) {
+      while (divTemp.firstElementChild) {
         wrapper.appendChild(divTemp.firstElementChild);
       }
       article.appendChild(wrapper);
     })
-    .catch(console.error('error'))
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 export default product;
