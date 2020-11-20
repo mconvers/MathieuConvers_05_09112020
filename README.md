@@ -31,5 +31,3 @@ Go to http://127.0.0.1:8000/ in your browser
 
 ## Without Boilerplate / web server
 Go to Orinico folder and open index.html in a browser.
-
-Go to http://localhost:9999 in your browser
