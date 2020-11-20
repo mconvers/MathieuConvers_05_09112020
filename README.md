@@ -21,7 +21,7 @@ For setup see the [boilerplate page](https://github.com/WeAreAthlon/frontend-web
 
 # Start the project
 
-This project use this [back end server](https://github.com/OpenClassrooms-Student-Center/JWDP5)
+This project use this [back-end API](https://github.com/OpenClassrooms-Student-Center/JWDP5)
 
 ## With Boilerplate
 ```sh
@@ -29,11 +29,7 @@ $ yarn run serve
 ```
 Go to http://127.0.0.1:8000/ in your browser
 
-## With Boilerplate
-Put the Orinico folder in a development platform like Wamp
-Or (if possible) you can type these commands
-```sh
-$ cd Orinico/
-$ php -S localhost:9999
-```
+## Without Boilerplate / web server
+Go to Orinico folder and open index.html in a browser.
+
 Go to http://localhost:9999 in your browser
